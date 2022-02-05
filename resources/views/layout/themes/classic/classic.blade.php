@@ -233,6 +233,10 @@
         <div class="text-center pt-2 font-josefin putih">Created By @anton_wiji</div>
         </div>
     </footer>
+
+    <audio autoplay>
+        <source src="audio/beatiful-in-white.mp3" type="audio/mp3">
+    </audio>
    
     
     <script type="text/javascript">
