@@ -6,6 +6,7 @@ use App\Models\Undangan;
 use App\Models\Pesan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class UndanganController extends Controller
 {
@@ -100,15 +101,38 @@ class UndanganController extends Controller
 
     public function sent(Request $request){
         
-        $pesan = $request->validate([
-            'id_pesan' => '',
+        $validator = Validator::make($request->all(),[
+            'id_pesan' => 'required',
             'nama' => 'required',
-            'pesan' => 'required'
+            'pesan' => 'required',
         ]);
 
-        Pesan::create($pesan);
+        if($validator->fails()){
+            return response()->json([
+                'status' => 400,
+                'error' => 'Gagal Memasukan data lol'
+            ]);
+        }
 
-        return redirect('#');
+        $validator = new Pesan;
+        $validator->id_pesan = $request['id_pesan'];
+        $validator->nama = $request['nama'];
+        $validator->pesan = $request['pesan'];
+
+        $validator->save();
+        return response()->json([
+            'status' => 200,
+            'success' => 'berhasil mengirim Pesan'
+        ]);
+
         
+    }
+
+    public function inbox(Undangan $undangan){
+        $pesans = DB::table('pesans')->select(['nama', 'pesan', 'created_at'])->where('id_pesan', '=' , $undangan->id)->get();
+
+        return response()->json([
+            'data' => $pesans,
+        ]);
     }
 }

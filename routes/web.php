@@ -46,4 +46,5 @@ Route::get('/create/themes/classic', [UndanganController::class, 'index']);
 Route::post('/create/themes/', [UndanganController::class, 'store']);
 
 Route::get('/{undangan:slug}', [UndanganController::class, 'show']);
+Route::get('/{undangan:slug}/show', [UndanganController::class, 'inbox']);
 Route::post('/{undangan:slug}', [UndanganController::class, 'sent']);

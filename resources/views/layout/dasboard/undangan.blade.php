@@ -117,7 +117,7 @@
     </div>
 </div>
 <div class="mb-3">
-  <label for="formFile" class="form-label">Galeri Foto</label>
+  <label class="form-label">Galeri Foto</label>
   <input class="form-control" type="file" name="image[]" multiple id="galeri" onchange="imagePreview('galeri', 'form', 'image-preview')">
 
   <div id="image-preview">
@@ -125,8 +125,10 @@
   </div>
     
 </div>
-
-
+<div class="mb-3">
+    <label class="form-label">Pilih Musik</label>
+    <input class="form-control" type="file" name="audio">
+</div>
 <!-- Tanggal Pernikahan -->
 <div class="row">
 <div class="col-6 mt-3">

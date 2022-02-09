@@ -197,36 +197,51 @@
             <div class="container">
                 <h2 class="font-pacifico sz-middle pd-tamu">Buku Tamu</h2>
                 <div class="tamu">
-                    <div class="pesan putih">
+                    <div class="pesan putih" id="ajax_pesan">
                         @if($pesans->count() <= 0 )
                             <h2>data tidak ada</h2>
-                        @else
-                            @foreach($pesans as $pesan)
-                            <p><b>{{$pesan->nama}} : {{$pesan->pesan}}</b></p>
-                            <p>{{$pesan->created_at}}</p>
-                            <hr>
-                            @endforeach
                         @endif
-                    </div>
-                    <form action="" method="post">
-                    @csrf
-                    <input type="hidden" name="id_pesan" value="{{$undangan->id}}">
-                    <!-- pesan -->
+                    </div> 
                     <div class="container">
-                        <div class="mb-3 col-6">
-                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nama" name="nama">
-                            </div>
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 150px" name="pesan"></textarea>
-                                <label for="floatingTextarea2">Kirim Ucapan Selamat Untuk mempelai</label>
-                            </div>
-                    
-                        <button class="btn font-josefin mt-3" style="background-color: #ffff; width: 600;" type="submit"><b>Kirim Pesan </b></button>
+                        <button class="btn font-josefin mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #ffff; width: 600;" type="button"><b>Kirim Pesan </b></button>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
+        <!-- modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Kirim Pesan</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="error-msg">
+
+                                </div>
+                               <!-- form modal -->
+                            <form action="" method="post">
+                                @csrf
+                               <input type="hidden" name="id_pesan" value="{{$undangan->id}}" id="id_pesan">
+                               <div class="mb-3 col-6">
+                                <input type="text" class="form-control" id="nama" placeholder="Nama" name="nama">
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a comment here" style="height: 150px" name="pesan" id="pesan"></textarea>
+                                <label for="floatingTextarea2">Kirim Ucapan Selamat Untuk mempelai</label>
+                            </div>
+                               <!-- end Form Modal -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn-save btn btn-primary">Save</button>
+                            </div>
+                            </div>
+                            </form>
+                        </div>
+            </div>
+            <!-- model end -->
     </section>
     <footer>
         <div class="bg-footer">
@@ -234,10 +249,73 @@
         </div>
     </footer>
 
-    <audio autoplay>
+    <!-- <audio autoplay>
         <source src="audio/beatiful-in-white.mp3" type="audio/mp3">
-    </audio>
-   
+    </audio> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            fetchdata();
+
+            $(document).on('click', '.btn-save', function(e){
+
+                e.preventDefault();
+                let data = {
+                    'id_pesan' : $('#id_pesan').val(),
+                    'nama' : $('#nama').val(),
+                    'pesan' : $('#pesan').val(),
+                }
+
+                let urlslug = document.URL;
+                const slug = urlslug.split('/');
+
+                $.ajax({
+                    type : 'POST',
+                    url : slug[3],
+                    data : data,
+                    success: function(respon){
+                        if(respon.status == 400){
+                            $('.error-msg').html('');
+                            $('.error-msg').addClass('alert alert-danger');
+                            $('.error-msg').append(`<li>${respon.error}</li>`);
+                        }else{
+                            $('#exampleModal').modal('hide');
+                            $('#nama').val('');
+                            $('#pesan').val('');
+                            fetchdata();
+                        }
+                    }
+                });
+            });
+
+            function fetchdata(){
+                let urlslug = document.URL;
+                const slug = urlslug.split('/');
+
+                $.ajax({
+                    type : 'GET',
+                    url : slug[3]+'/show',
+                    dataType : 'json',
+                    success : function(respon){
+                        $('#ajax_pesan').html('');
+                        $.each(respon.data, function(key, item){
+                            $('#ajax_pesan').append(`<p>${item.nama} : ${item.pesan}</p><hr>`)
+                        });
+                    }
+                })
+            }
+
+           
+        });
+
+        $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+     });
+    </script>
     
     <script type="text/javascript">
         var countDate = new Date('{{$tanggal}}').getTime();
