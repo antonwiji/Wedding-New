@@ -187,6 +187,14 @@
             </a>
           </li>
           <li class="nav-item menu-open">
+            <a href="/music" class="nav-link">
+              <i class="nav-icon fas fa-music"></i>
+              <p>
+                Music   
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open">
             <a href="/dasbord" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>

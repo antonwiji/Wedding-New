@@ -125,13 +125,9 @@
   </div>
     
 </div>
-<div class="mb-3">
-    <label class="form-label">Pilih Musik</label>
-    <input class="form-control" type="file" name="audio">
-</div>
 <!-- Tanggal Pernikahan -->
 <div class="row">
-<div class="col-6 mt-3">
+<div class="col-6">
         <label for="Tanggal" class="form-label">Tanggal Pernikahan</label>
         <input name="tanggal_penikahan" type="date" class="form-control" id="Tanggal">
         </div>
@@ -163,13 +159,13 @@
                 $(target).toggle(500);
             });
         }
-        $(document).ready(function (){
 
+        $(document).ready(function (){
+            fetchdata();
             sosial('#switchfbl', '#sfacebookl');
             sosial('#switchigl', '#sinstagraml');
             sosial('#switchfbp', '#sfacebookp');
-            sosial('#switchigp', '#sinstagramp');
-            
+            sosial('#switchigp', '#sinstagramp');     
         }); 
 
         function previewImage(section, target){

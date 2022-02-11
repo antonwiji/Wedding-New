@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DasboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MusicController;
 use App\Http\Controllers\UndanganController;
 use App\Models\Undangan;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,10 @@ Route::get('/demo/classic', function(){
 
 Route::get('/create/themes/classic', [UndanganController::class, 'index']);
 Route::post('/create/themes/', [UndanganController::class, 'store']);
+
+Route::get('/music/create', [MusicController::class, 'show']);
+Route::get('/music/create/add', [MusicController::class, 'add']);
+
 
 Route::get('/{undangan:slug}', [UndanganController::class, 'show']);
 Route::get('/{undangan:slug}/show', [UndanganController::class, 'inbox']);
