@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Music;
 use App\Models\Undangan;
 use App\Models\Pesan;
 use Illuminate\Http\Request;
@@ -12,7 +13,9 @@ class UndanganController extends Controller
 {
     
     public function index(){
-        return view('layout.dasboard.undangan');
+        return view('layout.dasboard.undangan', [
+            'musics' => Music::all()
+        ]);
     }
 
     public function store(Request $request){
@@ -32,6 +35,7 @@ class UndanganController extends Controller
             'instagraml' => '',
             'facebookp' => '',
             'instagramp' => '',
+            'music' => '',
             'buku_tamu_id' => '',
             'image' => 'required',
             'tema_id' => '',

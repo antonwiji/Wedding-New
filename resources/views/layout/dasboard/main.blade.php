@@ -187,7 +187,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="/music" class="nav-link">
+            <a href="/music/create" class="nav-link">
               <i class="nav-icon fas fa-music"></i>
               <p>
                 Music   

@@ -127,9 +127,20 @@
 </div>
 <!-- Tanggal Pernikahan -->
 <div class="row">
+
 <div class="col-6">
         <label for="Tanggal" class="form-label">Tanggal Pernikahan</label>
         <input name="tanggal_penikahan" type="date" class="form-control" id="Tanggal">
+        </div>
+        <div class="col-6">
+        <label for="Tanggal" class="form-label">Music</label>
+        <select class="form-select" aria-label="Default select example" name="music">
+            <option selected>Pilih Music</option>
+            <option value="">Tanpa Music</option>
+            @foreach($musics as $music)
+            <option value="{{$music->nama_music}}">{{$music->nama_music}}</option>
+            @endforeach
+        </select>
         </div>
 
 </div>

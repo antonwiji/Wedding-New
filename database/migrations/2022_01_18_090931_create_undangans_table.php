@@ -29,6 +29,7 @@ class CreateUndangansTable extends Migration
             $table->string('instagraml', 20)->nullable();
             $table->string('facebookp', 20)->nullable();
             $table->string('instagramp', 20)->nullable();
+            $table->string('music', 100)->nullable();
             $table->text('alamat')->nullable();
             $table->text('google_map')->nullable();
             $table->text('image_mempelai')->nullable();

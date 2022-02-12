@@ -241,6 +241,7 @@
                             </form>
                         </div>
             </div>
+            <audio src="audio/{{$undangan->music}}" autoplay></audio>
             <!-- model end -->
     </section>
     <footer>

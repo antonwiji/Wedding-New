@@ -48,6 +48,8 @@ Route::post('/create/themes/', [UndanganController::class, 'store']);
 
 Route::get('/music/create', [MusicController::class, 'show']);
 Route::get('/music/create/add', [MusicController::class, 'add']);
+Route::post('/music/create/add', [MusicController::class, 'store']);
+Route::get('/music/delete/{music}', [MusicController::class, 'hapus']);
 
 
 Route::get('/{undangan:slug}', [UndanganController::class, 'show']);
