@@ -141,27 +141,33 @@ body{
 }
 
 .img-wanita{
-    position: absolute;
     width: 100%;
-    max-width: 200px;
-    min-width: 200px;
-    height: 100%;
-    max-height: 300px;
-    min-height: 300px;
-    transform: translate(-145%, 20%);
-    z-index: -2;
+    height: auto;
+    max-width: 350px;
+    min-width: 280px;
+    max-height: 450px;
+    min-height: 400px;
 }
 
 .img-cowok{
-    position: absolute;
     width: 100%;
-    max-width: 380px;
-    min-width: 380px;
-    height: 100%;
-    max-height: 300px;
-    min-height: 300px;
-    transform: translate(-100%, 20%);
-    z-index: -2;
+    height: auto;
+    max-width: 350px;
+    min-width: 280px;
+    max-height: 450px;
+    min-height: 400px;
+}
+
+.fr-cowok-center img{
+    display: block;
+    margin: 0 auto;
+   
+}
+
+.fr-cewek-center img{
+    display: block;
+    margin: 0 auto;
+  
 }
 
 

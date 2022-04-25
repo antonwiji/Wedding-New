@@ -36,8 +36,9 @@
            <div class="row">
                <div class="col-md-5 d-flex justify-content-center">
                     <div class="fr-wanita">
-                        <img class="img-fluid" src="/src/componennt/bingka1.png" alt="bingka">
-                        <img class="img-fluid img-wanita" src="/src/mempelai/{{$mempelai_wanita}}" alt="cewek">
+                        <div class="fr-cewek-center">
+                            <img class="img-fluid img-wanita" src="/src/mempelai/{{$mempelai_wanita}}" alt="cewek">
+                        </div>
                         <div class="row text-center">
                                 <h2 class="font-dancing sz-large ungu">{{$undangan->nama_lengkap_p}}</h2>
                                 <p class="font-poppins sz-small">Putri Dari Ibu {{$undangan->nama_ibu_p}} & Bapak {{$undangan->nama_bpk_p}}</p>
@@ -78,8 +79,9 @@
 <!-- Cowok -->
                <div class="col-md-5 d-flex justify-content-center">
                <div class="fr-cowok">
-                        <img class="img-fluid" src="/src/componennt/bingka2.png" alt="bingka">
-                        <img class="img-fluid img-cowok" src="/src/mempelai/{{$mempelai_pria}}" alt="cowok">
+                        <div class="fr-cowok-center">
+                            <img class="img-cowok" src="/src/mempelai/{{$mempelai_pria}}" alt="cowok">
+                        </div>
                         <div class="row text-center">
                                 <h2 class="font-dancing sz-large ungu">{{$undangan->nama_lengkap_l}}</h2>
                                 <p class="font-poppins sz-small">Putra Dari Ibu {{$undangan->nama_ibu_l}} & Bapak {{$undangan->nama_bpk_l}}</p>

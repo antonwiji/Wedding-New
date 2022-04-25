@@ -72,6 +72,7 @@ class UndanganController extends Controller
                 $image[] = $image_url;
             }
         }
+
         $foto = implode('|', $image);
         $undangan['image_mempelai'] = $nama_full_pria.'|'.$nama_full_wanita;
         $undangan['image'] = $foto;
@@ -91,7 +92,6 @@ class UndanganController extends Controller
         $pesans = DB::table('pesans')->select(['nama', 'pesan', 'created_at'])->where('id_pesan', '=' , $undangan->id)->get();
         $galeris = explode('|', $undangan['image']);
         return view('layout.themes.classic.classic',[
-                    'title' => 'Testing',
                     'undangan' => $undangan,
                     'tanggal' => $date,
                     'date' => $date->format('D, d M Y'),
@@ -114,7 +114,7 @@ class UndanganController extends Controller
         if($validator->fails()){
             return response()->json([
                 'status' => 400,
-                'error' => 'Gagal Memasukan data lol'
+                'error' => 'Gagal Memasukan data'
             ]);
         }
 

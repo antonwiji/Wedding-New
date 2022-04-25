@@ -20,7 +20,7 @@
     <thead>
         <tr>
             <th>No </th>
-            <th>Column 2</th>
+            <th>Undangan</th>
             <th>Aksi</th>
         </tr>
         
