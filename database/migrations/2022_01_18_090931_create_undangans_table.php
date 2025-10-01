@@ -37,6 +37,8 @@ class CreateUndangansTable extends Migration
             $table->foreignId('buku_tamu_id');
             $table->foreignId('tema_id');
             $table->timestamp('tanggal_penikahan');
+            $table->text('additional_data')->nullable();
+            $table->text('image_hero')->nullable();
             $table->timestamps();
         });
     }
