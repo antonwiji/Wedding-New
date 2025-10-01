@@ -23,6 +23,17 @@
             </div>
         </div>
     </div>
+    <div class="col-6">
+        <div class="card" style="width: 100%;">
+            <img src="src/themes/modern/modern.png" class="img-fluid" alt="clasiktame">
+            <div class="card-body">
+                <h5 class="card-title">Modern Themes</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="/demo/modern" class="btn btn-outline-success">Lihat Undangan</a>
+                <a href="/create/themes/modern" class="btn btn-primary">Pilih Tema</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 

@@ -43,8 +43,15 @@ Route::get('/demo/classic', function(){
     return view('layout.themes.classic.classic');
 });
 
+Route::get('/demo/modern', function(){
+    return view('layout.demo.modern.modern');
+});
+
 Route::get('/create/themes/classic', [UndanganController::class, 'index']);
+Route::get('/create/themes/modern', [UndanganController::class, 'modern_themes']);
+
 Route::post('/create/themes/', [UndanganController::class, 'store']);
+Route::post('/create/themes/modern/post', [UndanganController::class, 'store_modern']);
 
 Route::get('/music/create', [MusicController::class, 'show']);
 Route::get('/music/create/add', [MusicController::class, 'add']);
@@ -53,5 +60,7 @@ Route::get('/music/delete/{music}', [MusicController::class, 'hapus']);
 
 
 Route::get('/{undangan:slug}', [UndanganController::class, 'show']);
-Route::get('/{undangan:slug}/show', [UndanganController::class, 'inbox']);
+Route::get('/{undangan:id}/show', [UndanganController::class, 'inbox']);
 Route::post('/{undangan:slug}', [UndanganController::class, 'sent']);
+
+
