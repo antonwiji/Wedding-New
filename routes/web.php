@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'show'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login']);
 
-Route::get('/register', [LoginController::class, 'register'])->middleware('guest');
+Route::get('/register', [LoginController::class, 'register'])->middleware('auth');
 Route::post('/register', [LoginController::class, 'create']);
 
 Route::get('/dasbord', [DasboardController::class, 'index'])->middleware('auth');
@@ -46,6 +46,8 @@ Route::get('/demo/classic', function(){
 Route::get('/demo/modern', function(){
     return view('layout.demo.modern.modern');
 });
+
+Route::get('/share/{slug}', [DasboardController::class, 'guest']);
 
 Route::get('/create/themes/classic', [UndanganController::class, 'index']);
 Route::get('/create/themes/modern', [UndanganController::class, 'modern_themes']);

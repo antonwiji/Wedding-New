@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Undangan;
-use App\Models\User;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class DasboardController extends Controller
 {
@@ -124,5 +121,21 @@ class DasboardController extends Controller
 
         return redirect('/dasbord')->with('update_succes', 'Data Berhasil diupdate');
 
+    }
+
+    public function guest($slug) {
+
+        $undangan = DB::table('undangans')
+        ->select(['id', 'nama_lengkap_l', 'nama_lengkap_p', 'nama_panggilan_l', 'nama_panggilan_p','slug'])
+        ->where('slug', '=' , $slug)
+        ->first();
+
+        abort_if(!$undangan, 404);
+        
+
+        return view('layout.dasboardguest.index', [
+            'undangan' => $undangan,
+            'slug' => $slug
+        ]);
     }
 }

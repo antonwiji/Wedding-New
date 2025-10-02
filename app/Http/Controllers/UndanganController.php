@@ -166,7 +166,7 @@ class UndanganController extends Controller
         
     }
 
-    public function show(Undangan $undangan){
+    public function show(Undangan $undangan, Request $request) {
 
         $date = Helpers::getDate($undangan['tanggal_penikahan']);
         $tema_id = $undangan['tema_id'];
@@ -177,6 +177,9 @@ class UndanganController extends Controller
 
         $pesans = DB::table('pesans')->select(['nama', 'pesan', 'created_at'])->where('id_pesan', '=' , $undangan->id)->get();
         $galeris = explode('|', $undangan['image']);
+
+        $to = $request->query("to");
+
         return view(UndanganController::getThemes($tema_id),[
                     'undangan' => $undangan,
                     'tanggal' => $date,
@@ -185,7 +188,8 @@ class UndanganController extends Controller
                     'pesans' => $pesans,
                     'mempelai_wanita' => $mempelai[1],
                     'mempelai_pria' => $mempelai[0],
-                    'additional_data' => $additional_data
+                    'additional_data' => $additional_data,
+                    'to' => $to
             ]);
     }
 

@@ -44,7 +44,7 @@
     .navbar .nav-link.active{color:var(--primary)!important}
 
     /* Hero */
-    .hero{min-height:100dvh; position:relative; display:grid; place-items:center; text-align:center; color:#fff; padding:96px 16px 140px;}
+    .hero{min-height:100dvh; position:relative; display:grid; place-items:center; text-align:center; color:#fff; padding:80px 16px 140px;}
     .hero::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35)), url('{{ asset("src/hero/" . ($undangan->image_hero ?? "hero1.jpg")) }}') center/cover no-repeat;}
     .hero > .inner{position:relative; z-index:1}
     .hero .tag{display:inline-block; padding:.25rem .6rem; border-radius:999px; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25)}

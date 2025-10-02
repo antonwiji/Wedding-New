@@ -35,7 +35,6 @@
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
   </form>
-  <small><a href="register">Tidak Punya Akun Daftar Disini !!</a></small>
   <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
 </main>
 

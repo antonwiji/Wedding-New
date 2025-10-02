@@ -38,7 +38,8 @@
   <header id="beranda" class="hero d-flex align-items-center">
     <div class="inner container">
       <div class="tag mb-3">#{{ $undangan->slug ?? '' }}</div>
-      <p class="mb-1">Mengundang Anda ke pernikahan</p>
+      <p class="mb-1">Kepada Yth.</p>
+      <h2 class="h4 fw-semibold mb-2" id="invitee">{{ $to ?? 'Bapak/Ibu/Saudara/i' }}</h2>
       <h1 class="names mb-3">{{$undangan->nama_panggilan_p ?? ''}} Dan {{$undangan->nama_panggilan_l ?? ''}}</h1>
       <p class="date h5 mb-4"> {{$date}} </p>
       <div class="countdown mb-5" id="countdown" aria-live="polite" data-target-date="{{$undangan->tanggal_penikahan ?? ''}}">
