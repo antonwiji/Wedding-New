@@ -121,11 +121,13 @@
   </section>
 
   <!-- GALERI -->
+
+  @if($galeris != null)
   <section id="galeri" class="section bg-rose">
     <div class="container">
       <div class="text-center mb-4">
         <h2 class="section-title display-6 reveal" data-reveal="zoom">Galeri</h2>
-        <p class="reveal" data-reveal>Beberapa momen kebersamaan kami.</p>
+        <p class="reveal" data-reveal>Beberapa momen kebersamaan kami wewew.</p>
       </div>
       <div class="row g-3 gallery">
         <!-- <div class="col-6 col-md-4 g-col reveal" data-reveal><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=900&auto=format&fit=crop" alt="Galeri 1" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1600&auto=format&fit=crop" loading="lazy"></div> -->
@@ -135,6 +137,7 @@
       </div>
     </div>
   </section>
+  @endif
 
   <!-- LOKASI -->
   <section id="lokasi" class="section">

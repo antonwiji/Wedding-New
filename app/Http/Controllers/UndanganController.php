@@ -110,7 +110,7 @@ class UndanganController extends Controller
             'instagramp' => '',
             'music' => '',
             'buku_tamu_id' => '',
-            'image' => 'required',
+            'image' => '',
             'tema_id' => '',
             'alamat' => '',
             'google_map' => '',
@@ -129,37 +129,52 @@ class UndanganController extends Controller
 
         $ext_pria = strtolower($request->file(['image_pria'])->getClientOriginalExtension());
         $ext_wanita = strtolower($request->file(['image_wanita'])->getClientOriginalExtension());
-        $ext_hero_image = strtolower($request->file(['hero_image'])->getClientOriginalExtension());
+
+        if($request->file(['hero_image']) != null) {
+            $ext_hero_image = strtolower($request->file(['hero_image'])->getClientOriginalExtension());
+        }
 
         $nama_full_pria = $pria.'.'.$ext_pria;
         $nama_full_wanita = $wanita.'.'.$ext_wanita;
-        $nama_full_hero = $hero_image.'.'.$ext_hero_image;
+
+        if($request->file(['hero_image']) != null) {
+            $nama_full_hero = $hero_image.'.'.$ext_hero_image;
+        }
 
         $request->file(['image_pria'])->move('src/mempelai/', $nama_full_pria);
         $request->file(['image_wanita'])->move('src/mempelai/', $nama_full_wanita);
-        $request->file(['hero_image'])->move('src/hero/', $nama_full_hero);
-        
-        $image = array();
 
-        if($files = $undangan['image']){
-
-            foreach($files as $file){
-                $image_name = md5(rand(20, 200));
-                $ext = strtolower($file->getClientOriginalExtension());
-                $image_full_name = $image_name.'.'.$ext;
-                $upload_path = 'image/';
-                $image_url = $upload_path.$image_full_name;
-                $file->move($upload_path, $image_full_name);
-                $image[] = $image_url;
-            }
+        if($request->file(['hero_image']) != null) {
+            $request->file(['hero_image'])->move('src/hero/', $nama_full_hero);
         }
 
-        $foto = implode('|', $image);
-        $undangan['image_mempelai'] = $nama_full_pria.'|'.$nama_full_wanita;
-        $undangan['image_hero'] = $nama_full_hero;
-        $undangan['image'] = $foto;
+        if($request['image'] != null) {
+        
+            $image = array();
 
-       
+                if($files = $undangan['image']){
+
+                    foreach($files as $file){
+                        $image_name = md5(rand(20, 200));
+                        $ext = strtolower($file->getClientOriginalExtension());
+                        $image_full_name = $image_name.'.'.$ext;
+                        $upload_path = 'image/';
+                        $image_url = $upload_path.$image_full_name;
+                        $file->move($upload_path, $image_full_name);
+                        $image[] = $image_url;
+                    }
+                }
+
+            $foto = implode('|', $image);
+            $undangan['image'] = $foto;
+        }
+
+        $undangan['image_mempelai'] = $nama_full_pria.'|'.$nama_full_wanita;
+
+        if($request->file(['hero_image']) != null) {
+            $undangan['image_hero'] = $nama_full_hero;
+        }
+    
         Undangan::create($undangan);
 
         return redirect('/create')->with('succes', 'Berhasil Membuat Undangan');
@@ -176,7 +191,12 @@ class UndanganController extends Controller
         $additional_data = Parse::jsonToObject($undangan['additional_data']);
 
         $pesans = DB::table('pesans')->select(['nama', 'pesan', 'created_at'])->where('id_pesan', '=' , $undangan->id)->get();
-        $galeris = explode('|', $undangan['image']);
+        
+        if($undangan['image'] != null) {
+            $galeris = explode('|', $undangan['image']);
+        }else { 
+            $galeris = null;
+        }
 
         $to = $request->query("to");
 
