@@ -168,8 +168,10 @@ Hormat kami,
 
     const sanitize = (s) => (s||'').split(' ').filter(Boolean).join(' ').trim();
     const buildToPersonal = (name, partner) => {
-      const n = sanitize(name); const p = sanitize(partner);
-      return p ? `${n} dan ${p}` : n;
+      const n = sanitize(name); 
+      const p = sanitize(partner);
+        
+      return p ? `${n} dan ${p}` : `${n} dan pasangan`;
     };
     const buildToGroup = (name) => sanitize(name);
     const buildUrl = (to) => {
@@ -253,7 +255,10 @@ Hormat kami,
     $('#g_send').addEventListener('click', ()=>{
       const name = sanitize($('#g_name').value);
       if(!name){ showToast('Nama grup wajib diisi'); return; }
-      const to = buildToGroup(name); const url = buildUrl(to); const m = msgForUrl(url);
+        
+      const to = buildToGroup(name); 
+      const url = buildUrl(to); 
+      const m = msgForUrl(url);
       window.open(waHref(m), '_blank');
       const s = state(); s.group.push({name}); save(s); renderGroup();
       $('#g_name').value=''; showToast('Dikirim & ditambahkan');
