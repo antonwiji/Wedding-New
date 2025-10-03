@@ -63,8 +63,8 @@ class UndanganController extends Controller
         $ext_wanita = strtolower($request->file(['image_wanita'])->getClientOriginalExtension());
         $nama_full_pria = $pria.'.'.$ext_pria;
         $nama_full_wanita = $wanita.'.'.$ext_wanita;
-        $request->file(['image_pria'])->move('src/mempelai/', $nama_full_pria);
-        $request->file(['image_wanita'])->move('src/mempelai/', $nama_full_wanita);
+        $request->file(['image_pria'])->move(public_path('src/mempelai/'), $nama_full_pria);
+        $request->file(['image_wanita'])->move(public_path('src/mempelai/'), $nama_full_wanita);
         
         $image = array();
 
@@ -141,11 +141,11 @@ class UndanganController extends Controller
             $nama_full_hero = $hero_image.'.'.$ext_hero_image;
         }
 
-        $request->file(['image_pria'])->move('src/mempelai/', $nama_full_pria);
-        $request->file(['image_wanita'])->move('src/mempelai/', $nama_full_wanita);
+        $request->file(['image_pria'])->move(public_path('src/mempelai/'), $nama_full_pria);
+        $request->file(['image_wanita'])->move(public_path('src/mempelai/'), $nama_full_wanita);
 
         if($request->file(['hero_image']) != null) {
-            $request->file(['hero_image'])->move('src/hero/', $nama_full_hero);
+            $request->file(['hero_image'])->move(public_path('src/hero/'), $nama_full_hero);
         }
 
         if($request['image'] != null) {
@@ -160,7 +160,7 @@ class UndanganController extends Controller
                         $image_full_name = $image_name.'.'.$ext;
                         $upload_path = 'image/';
                         $image_url = $upload_path.$image_full_name;
-                        $file->move($upload_path, $image_full_name);
+                        $file->move(public_path($upload_path), $image_full_name);
                         $image[] = $image_url;
                     }
                 }
