@@ -171,7 +171,7 @@ Hormat kami,
       const n = sanitize(name); 
       const p = sanitize(partner);
         
-      return p ? `${n} dan ${p}` : `${n} dan pasangan`;
+      return p ? `${n} dan ${p}` : `${n} dan Pasangan`;
     };
     const buildToGroup = (name) => sanitize(name);
     const buildUrl = (to) => {
