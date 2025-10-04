@@ -19,6 +19,7 @@
       --primary-2:#e5989b;
       --text:#3b3b3b;
       --bg:#fffaf7;
+      --gap: 60px; /* jarak antar tombol mengambang */
     }
     * { overscroll-behavior-x: none; }
     html{scroll-behavior:smooth}
@@ -85,12 +86,21 @@
     /* Buttons */
     .btn-primary{--bs-btn-bg:var(--primary); --bs-btn-border-color:var(--primary); --bs-btn-hover-bg:#a16d79; --bs-btn-hover-border-color:#a16d79}
     .btn-outline-primary{--bs-btn-color:var(--primary); --bs-btn-hover-bg:var(--primary); --bs-btn-hover-border-color:var(--primary)}
+    #btnMusic{
+      position: fixed;
+      left: 16px;
+    }
 
     /* Footer */
     footer{background:#fff; border-top:1px solid #f1e9e9}
 
     /* Back to top */
-    #toTop{position:fixed; right:16px; bottom:16px; z-index:1040; display:none}
+    #toTop{
+      position: fixed;
+      right: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom));
+      z-index: 1020;
+    }
 
     /* Small helpers */
     .bg-rose{background:linear-gradient(180deg,#fff,#fff2f0)}
@@ -99,6 +109,8 @@
 
     @media (max-width: 576px){
       .hero .names{font-size:2.2rem}
+      #toTop{ right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); }
+      #btnMusic{ left: 12px; bottom: calc(12px + var(--gap) + env(safe-area-inset-bottom)); }
     }
   /* Bottom Nav (mobile) */
     .bottom-nav{background:rgba(255,255,255,.95); border-top:1px solid #eee; backdrop-filter:saturate(150%) blur(8px); padding:.25rem .5rem calc(env(safe-area-inset-bottom,0) + .25rem)}
@@ -110,6 +122,7 @@
     @media (max-width: 991.98px){ body{padding-bottom:72px} #toTop{bottom:80px} }
     @media (min-width: 992px){ .hero{ padding: 120px 0 80px; } }
 
+    
 
     </style>
   </head>
@@ -121,7 +134,77 @@
     
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  
+  <script>
+(function(){
+  const audio = document.getElementById('bgm');
+  const btn   = document.getElementById('btnMusic');
+  const icon  = document.getElementById('iconMusic');
+
+  window.addEventListener('scroll', ()=>{
+      btn.style.display = window.scrollY > 600 ? 'block' : 'none';
+    });
+
+  function refreshIcon(){
+    icon.className = audio.paused ? 'bi bi-play-fill' : 'bi bi-pause-fill';
+    btn.setAttribute('aria-label', audio.paused ? 'Putar musik' : 'Jeda musik');
+  }
+
+  // Toggle oleh user
+  btn.addEventListener('click', async () => {
+    if(audio.paused){
+      try { audio.muted = false; await audio.play(); } catch(e){}
+    } else {
+      audio.pause();
+    }
+    refreshIcon();
+  });
+
+  // ==== Autoplay default: coba langsung mainkan ====
+  async function tryPlayNow(){
+    try {
+      // Autoplay policy: boleh jalan kalau masih muted
+      // Kita langsung unmute dan play; bila gagal akan di-handle di catch
+      audio.muted = false;
+      await audio.play();
+      refreshIcon();
+      return true;
+    } catch (e) {
+      // Kemungkinan diblokir (butuh gesture)
+      return false;
+    }
+  }
+
+  // Jika masih diblokir, unmute+play setelah gesture pertama
+  function armUnlockOnFirstGesture(){
+    const unlock = async () => {
+      try { audio.muted = false; await audio.play(); } catch(e) {}
+      refreshIcon();
+      ['click','touchstart','pointerdown','keydown','scroll'].forEach(ev =>
+        document.removeEventListener(ev, unlock, {passive:true})
+      );
+    };
+    ['click','touchstart','pointerdown','keydown','scroll'].forEach(ev =>
+      document.addEventListener(ev, unlock, {once:true, passive:true})
+    );
+
+    // juga kaitkan ke tombol “Buka Undangan” jika ada
+    document.querySelectorAll('#beranda .btn, a[href="#mempelai"]').forEach(el=>{
+      el.addEventListener('click', unlock, {once:true});
+      el.addEventListener('touchstart', unlock, {once:true, passive:true});
+    });
+  }
+
+  // Coba play sekarang; kalau gagal, pasang unlocker
+  tryPlayNow().then(ok => { if(!ok) armUnlockOnFirstGesture(); });
+
+  // Kalau file belum siap, coba lagi ketika siap diputar
+  audio.addEventListener('canplaythrough', () => { if(audio.paused) tryPlayNow(); });
+  audio.addEventListener('play',  refreshIcon);
+  audio.addEventListener('pause', refreshIcon);
+
+  refreshIcon();
+})();
+</script>
   <script>
     $(document).ready(function() {
 

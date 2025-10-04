@@ -226,9 +226,12 @@
       <div class="small"> janjinikah.id <i class="bi bi-heart-fill text-danger"></i></div>
     </div>
   </footer>
+  <button id="btnMusic" style="display: none;" class="btn btn-light rounded-circle p-2 shadow" aria-label="Jeda musik">
+    <i class="bi bi-pause-fill" id="iconMusic"></i>
+  </button>
 
   <!-- Back to top -->
-  <button id="toTop" class="btn btn-primary rounded-circle p-2" aria-label="Kembali ke atas"><i class="bi bi-arrow-up"></i></button>
+  <button id="toTop" style="display: none;" class="btn btn-primary rounded-circle p-2" aria-label="Kembali ke atas"><i class="bi bi-arrow-up"></i></button>
 
   <!-- Lightbox Modal -->
   <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
@@ -253,3 +256,4 @@
       </div>
     </div>
   </div>
+  <audio id="bgm" src="{{ asset('audio/'.$undangan->music) }}" preload="auto" autoplay muted loop></audio>
