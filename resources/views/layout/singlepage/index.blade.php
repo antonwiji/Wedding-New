@@ -360,10 +360,9 @@
     <section id="harga">
         <div class="container">
             <h2 class="section-title">Paket & Harga</h2>
-            <p class="section-sub">Pilih sesuai kebutuhan. Bisa upgrade kapan saja.</p>
             <div class="pricing">
                 <div class="card price reco">
-                        <div class="head"><h3>Pro</h3><span class="badge">Paling Populer</span></div>
+                        <div class="head"><h3>Premium</h3><span class="badge">Paling Populer</span></div>
                     <div style="position: relative">
                             <div class="value">
                                 <p>Rp50K</p>
@@ -374,9 +373,12 @@
                             </div>
                     </div>
                     <ul class="muted" style="margin:0 0 12px;padding-left:18px">
-                        <li>Semua di Basic</li>
+                        <li>RSVP & Buku Tamu</li>
+                        <li>Google Map</li>
+                        <li>Amplop Digital</li>
                         <li>Galeri foto/video & Musik</li>
                         <li>Kustom warna & font</li>
+                        <li>Dan Feature Unggulan Lainnya</li>
                     </ul>
                     <a class="btn btn-primary" href="https://wa.me/6285709005738?text=Halo%2C%20saya%20ingin%20membuat%20undangan%20digital" target="_blank" rel="noopener">Pesan Paket</a>
                 </div>
