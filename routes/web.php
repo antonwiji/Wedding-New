@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/login');
+    return view('layout.singlepage.index');
 });
 
 Route::get('/login', [LoginController::class, 'show'])->name('login')->middleware('guest');
