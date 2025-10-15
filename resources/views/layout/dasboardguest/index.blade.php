@@ -178,7 +178,7 @@ Hormat kami,
       const cleanBase = BASE_URL.replace(/\/$/, '');
       return `${cleanBase}/${SLUG}?to=${encodeURIComponent(to)}`;
     };
-    const waHref = (text) => `https://wa.me/?text=${encodeURIComponent(text)}`;
+    const waHref = (text) => `https://api.whatsapp.com/send/?text=${encodeURIComponent(text)}`;
 
     const msgForUrl = (url) => MSG_TEMPLATE.replace('{url}', url);
 
