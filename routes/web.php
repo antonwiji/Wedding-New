@@ -47,13 +47,19 @@ Route::get('/demo/modern', function(){
     return view('layout.demo.modern.modern');
 });
 
+Route::get('/demo/elegan', function () {
+    return view('layout.themes.elegan.index');
+});
+
 Route::get('/share/{slug}', [DasboardController::class, 'guest']);
 
 Route::get('/create/themes/classic', [UndanganController::class, 'index']);
 Route::get('/create/themes/modern', [UndanganController::class, 'modern_themes']);
+Route::get('/create/themes/elegan', [UndanganController::class, 'modern_elegan']);
 
 Route::post('/create/themes/', [UndanganController::class, 'store']);
 Route::post('/create/themes/modern/post', [UndanganController::class, 'store_modern']);
+Route::post('/create/themes/elegan/post', [UndanganController::class, 'store_elegan']);
 
 Route::get('/music/create', [MusicController::class, 'show']);
 Route::get('/music/create/add', [MusicController::class, 'add']);

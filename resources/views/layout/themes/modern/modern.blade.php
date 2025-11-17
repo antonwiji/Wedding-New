@@ -127,7 +127,7 @@
     <div class="container">
       <div class="text-center mb-4">
         <h2 class="section-title display-6 reveal" data-reveal="zoom">Galeri</h2>
-        <p class="reveal" data-reveal>Beberapa momen kebersamaan kami wewew.</p>
+        <p class="reveal" data-reveal>Beberapa momen kebersamaan kami.</p>
       </div>
       <div class="row g-3 gallery">
         <!-- <div class="col-6 col-md-4 g-col reveal" data-reveal><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=900&auto=format&fit=crop" alt="Galeri 1" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1600&auto=format&fit=crop" loading="lazy"></div> -->
@@ -181,7 +181,7 @@
   </section>
 
   <!-- UCAPAN / GUESTBOOK -->
-  <section id="ucapan" class="section bg-rose">
+  `<section id="ucapan" class="section bg-rose">
     <div class="container">
       <div class="text-center mb-4">
         <h2 class="section-title display-6 reveal" data-reveal="zoom">Buku Tamu</h2>
@@ -219,7 +219,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section>`
 
   <footer class="py-4 text-center">
     <div class="container d-flex flex-column align-items-center gap-2">
@@ -234,7 +234,7 @@
   <button id="toTop" style="display: none;" class="btn btn-primary rounded-circle p-2" aria-label="Kembali ke atas"><i class="bi bi-arrow-up"></i></button>
 
   <!-- Lightbox Modal -->
-  <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="false">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content bg-dark text-white border-0">
         <div class="modal-header border-0">

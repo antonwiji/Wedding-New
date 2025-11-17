@@ -26,6 +26,14 @@ class UndanganController extends Controller
         ]);
     }
 
+    public function modern_elegan(){
+        return view('layout.dasboard.elegan.create_form', [
+            'musics' => Music::all()
+        ]);
+    }
+
+    
+
     public function store(Request $request){
 
         $undangan = $request->validate([
@@ -122,6 +130,96 @@ class UndanganController extends Controller
         $undangan['slug'] = $undangan['nama_panggilan_l'].'&'.$undangan['nama_panggilan_p']; 
         $undangan['buku_tamu_id'] = 1;
         $undangan['tema_id'] = 2;
+
+        $pria = md5(rand(20,50));
+        $wanita = md5(rand(20,50));
+        $hero_image = md5(rand(20,50));
+
+        $ext_pria = strtolower($request->file(['image_pria'])->getClientOriginalExtension());
+        $ext_wanita = strtolower($request->file(['image_wanita'])->getClientOriginalExtension());
+
+        if($request->file(['hero_image']) != null) {
+            $ext_hero_image = strtolower($request->file(['hero_image'])->getClientOriginalExtension());
+        }
+
+        $nama_full_pria = $pria.'.'.$ext_pria;
+        $nama_full_wanita = $wanita.'.'.$ext_wanita;
+
+        if($request->file(['hero_image']) != null) {
+            $nama_full_hero = $hero_image.'.'.$ext_hero_image;
+        }
+
+        $request->file(['image_pria'])->move(public_path('src/mempelai/'), $nama_full_pria);
+        $request->file(['image_wanita'])->move(public_path('src/mempelai/'), $nama_full_wanita);
+
+        if($request->file(['hero_image']) != null) {
+            $request->file(['hero_image'])->move(public_path('src/hero/'), $nama_full_hero);
+        }
+
+        if($request['image'] != null) {
+        
+            $image = array();
+
+                if($files = $undangan['image']){
+
+                    foreach($files as $file){
+                        $image_name = md5(rand(20, 200));
+                        $ext = strtolower($file->getClientOriginalExtension());
+                        $image_full_name = $image_name.'.'.$ext;
+                        $upload_path = 'image/';
+                        $image_url = $upload_path.$image_full_name;
+                        $file->move(public_path($upload_path), $image_full_name);
+                        $image[] = $image_url;
+                    }
+                }
+
+            $foto = implode('|', $image);
+            $undangan['image'] = $foto;
+        }
+
+        $undangan['image_mempelai'] = $nama_full_pria.'|'.$nama_full_wanita;
+
+        if($request->file(['hero_image']) != null) {
+            $undangan['image_hero'] = $nama_full_hero;
+        }
+    
+        Undangan::create($undangan);
+
+        return redirect('/create')->with('succes', 'Berhasil Membuat Undangan');
+        
+    }
+
+    public function store_elegan(Request $request){
+
+        $undangan = $request->validate([
+            'email_create' => 'required',
+            'slug' => '',
+            'nama_lengkap_l' => 'required',
+            'nama_lengkap_p' => 'required',
+            'nama_panggilan_l' => 'required',
+            'nama_panggilan_p' => 'required',
+            'nama_bpk_l' => 'required',
+            'nama_ibu_l' => 'required',
+            'nama_bpk_p' => 'required',
+            'nama_ibu_p' => 'required',
+            'facebookl' => '',
+            'instagraml' => '',
+            'facebookp' => '',
+            'instagramp' => '',
+            'music' => '',
+            'buku_tamu_id' => '',
+            'image' => '',
+            'tema_id' => '',
+            'alamat' => '',
+            'google_map' => '',
+            'tanggal_penikahan'   => 'required',
+            'additional_data' => '',
+            'image_hero' => '',
+        ]);
+
+        $undangan['slug'] = $undangan['nama_panggilan_l'].'&'.$undangan['nama_panggilan_p']; 
+        $undangan['buku_tamu_id'] = 1;
+        $undangan['tema_id'] = 3;
 
         $pria = md5(rand(20,50));
         $wanita = md5(rand(20,50));
@@ -283,6 +381,9 @@ class UndanganController extends Controller
 
         if($id_themes === 2) {
             return 'layout.themes.modern.modern';
+        }
+        else if($id_themes === 3) {
+            return 'layout.themes.elegan.index';
         }
         else {
             return 'layout.themes.classic.classic';
