@@ -6,13 +6,30 @@
   <meta name="theme-color" content="#f8fafc" />
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  @php
+    $heroImage = $undangan->image_hero
+        ? asset('src/hero/' . $undangan->image_hero)
+        : asset('src/hero/hero1.jpg');
+  @endphp
+  <title>{{ $undangan->nama_panggilan_p }} & {{ $undangan->nama_panggilan_l }} — Undangan Pernikahan</title>
+  <meta name="description" content="Kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami pada {{ $date }}.">
+  <meta property="og:title" content="The Wedding of {{ $undangan->nama_panggilan_p }} & {{ $undangan->nama_panggilan_l }}">
+  <meta property="og:description" content="Kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami pada {{ $date }}.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ url()->current() }}">
+  <meta property="og:image" content="{{ $heroImage }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Wedding of {{ $undangan->nama_panggilan_p }} & {{ $undangan->nama_panggilan_l }}">
+  <meta name="twitter:description" content="Kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami pada {{ $date }}.">
+  <meta name="twitter:image" content="{{ $heroImage }}">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-  <title>Mobile Template • Max 480px</title>
   <style>
     :root{
       --bg: #f8fafc;
