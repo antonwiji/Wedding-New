@@ -18,8 +18,8 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ url()->current() }}">
   <meta property="og:image" content="{{ $heroImage }}">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="2169">
+  <meta property="og:image:height" content="3254">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="The Wedding of {{ $undangan->nama_panggilan_p }} & {{ $undangan->nama_panggilan_l }}">
   <meta name="twitter:description" content="Kami mengundang Bapak/Ibu/Saudara/i untuk hadir di hari bahagia kami pada {{ $date }}.">
