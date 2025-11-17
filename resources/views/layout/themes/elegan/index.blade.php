@@ -472,7 +472,7 @@
       flex-direction: column;
       align-items: center;
       padding: 14px;
-      margin-bottom: 100px;
+      margin-bottom: 160px;
     }
 
     .card-amplop {
