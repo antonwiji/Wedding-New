@@ -18,6 +18,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ url()->current() }}">
   <meta property="og:image" content="{{ $heroImage }}">
+  <meta property="og:image:secure_url" content="{{ $heroImage }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
