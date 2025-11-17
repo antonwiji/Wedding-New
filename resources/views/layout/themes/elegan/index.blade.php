@@ -698,7 +698,7 @@
                 <div class="mt-3">
                   <img src="/src/hero/{{ $undangan->image_hero }}" alt="mempelai" class="rounded-circle shadow" width="200" height="200" style="object-fit:cover" loading="lazy">
                 </div>
-                <p class="mt-3" style=" font-family: 'Great Vibes', Sans-serif; font-weight: 500; font-size: 34px;">{{ $undangan->nama_panggilan_p }} Dan {{ $undangan->nama_panggilan_l }}</p>
+                <p class="mt-3" style=" font-family: 'Great Vibes', Sans-serif; font-weight: 500; font-size: 34px;">{{ $undangan->nama_panggilan_l }} Dan {{ $undangan->nama_panggilan_p }}</p>
                 <p style="font-family:'Work Sans', sans-serif; font-size: 13px; font-weight: 400; text-transform: uppercase;">We Invite You to celebrate our wedding</p>
                 <p style="font-family:'Work Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.6px;">{{ $date }}</p>
                 <button class="btn btn-danger mt-2">Save The Date</button>
