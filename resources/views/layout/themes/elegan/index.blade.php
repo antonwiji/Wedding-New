@@ -506,7 +506,7 @@
     .button-copy {
       position: absolute;
       right: 10px;
-      bottom: 10px;
+      bottom: -23px;
     }
 
     .main-buku-tamu{
@@ -862,7 +862,7 @@
                       <div class="logo-bank">
                         <img width="70" src="/src/themes/elegan/bank/{{ $gift->provider }}.png" alt="{{ $gift->provider }}">
                       </div>
-                      <p>{{ $gift->provider }}</p>
+                      <p style="text-transform: uppercase;">{{ $gift->provider }}</p>
                       <span id="rek{{ $gift->provider }}">{{ $gift->noRek }}</span>
                       <p>{{ $gift->ownership }}</p>
                       <div class="button-copy">
