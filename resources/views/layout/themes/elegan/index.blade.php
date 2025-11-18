@@ -881,10 +881,10 @@
                         <img width="70" src="/src/themes/elegan/bank/{{ $gift->provider }}.png" alt="{{ $gift->provider }}">
                       </div>
                       <p style="text-transform: uppercase;">{{ $gift->provider }}</p>
-                      <span id="rek{{ $gift->provider }}">{{ $gift->noRek }}</span>
+                      <span id="rek{{ $gift->noRek }}">{{ $gift->noRek }}</span>
                       <p>{{ $gift->ownership }}</p>
                       <div class="button-copy">
-                        <button data-copy="#rek{{ $gift->provider }}" class="btn btn-success" style="width: 110px;"> Copy </button>
+                        <button data-copy="#rek{{ $gift->noRek }}" class="btn btn-success" style="width: 110px;"> Copy </button>
                       </div>
                     </div>
                   @endforeach
@@ -1029,9 +1029,7 @@
     const lbImg = document.getElementById('lightboxImage');
     document.querySelectorAll('#galeri img[data-bs-target="#lightboxModal"]').forEach(img => {
       img.addEventListener('click', () => { 
-        console.log('datas ini masuk');
         lbImg.src = img.getAttribute('data-src') || img.src; 
-        console.log(lbImg.src);
       });
     });
 
@@ -1105,10 +1103,9 @@
       navigator.clipboard.writeText(text)
     }
 
-    document.querySelectorAll('[data-copy]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
+    document.querySelectorAll('[data-copy]').forEach(btn=> {
+      btn.addEventListener('click', () => {
         const val = btn.dataset.copy.startsWith('#') ? document.querySelector(btn.dataset.copy).textContent.trim() : btn.dataset.copy;
-        console.log("hit data")
         copyText(val)
       });
     });
