@@ -746,7 +746,7 @@
                 <img src="/src/mempelai/{{$mempelai_wanita}}" alt="Foto mempelai wanita" class="rounded-circle shadow mt-5" width="200" height="200" style="object-fit:cover" loading="lazy">
                 <p class="font-name mt-4">{{ $undangan->nama_lengkap_p ?? '' }}</p>
                 <div class="parent-name">
-                  <p>Putra dari Bapak {{ $undangan->nama_bpk_p ?? '' }}</p>
+                  <p>Putri dari Bapak {{ $undangan->nama_bpk_p ?? '' }}</p>
                   <p>& Ibu {{ $undangan->nama_ibu_p ?? '' }}</p>
                 </div>
                 <div class="social-media">
