@@ -730,7 +730,7 @@
               <p class="font-name mt-4">{{ $undangan->nama_lengkap_l  ?? '' }}</p>
               <div class="parent-name">
                 <p>Putra dari Bapak {{ $undangan->nama_bpk_l ?? '' }}</p>
-                <p>& {{ $undangan->nama_ibu_l ?? '' }}</p>
+                <p>& Ibu {{ $undangan->nama_ibu_l ?? '' }}</p>
               </div>
               <div class="social-media">
                 @if($undangan->instagramp != null) 
@@ -747,7 +747,7 @@
                 <p class="font-name mt-4">{{ $undangan->nama_lengkap_p ?? '' }}</p>
                 <div class="parent-name">
                   <p>Putra dari Bapak {{ $undangan->nama_bpk_p ?? '' }}</p>
-                  <p>& {{ $undangan->nama_ibu_p ?? '' }}</p>
+                  <p>& Ibu {{ $undangan->nama_ibu_p ?? '' }}</p>
                 </div>
                 <div class="social-media">
                   @if($undangan->instagraml != null) 
